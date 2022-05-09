@@ -15,7 +15,15 @@ app.use(cors())
 
 app.use('/upload',uploadRoute)
 
+
+// @TODO - Take Directory Path through Login Token
 app.get('/',(req,res)=>{
+    var folder = req.header("User-Name")
+    if(!fs.existsSync("./public/uploads/"+folder))
+    {
+        fs.mkdirSync("./public/uploads/"+folder)
+    }
+
     res.json({
         "status": 200,
         "message": "API UP AND RUNNING"
