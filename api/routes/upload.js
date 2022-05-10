@@ -18,7 +18,7 @@ var storage = multer.diskStorage({
 // @TODO - Take File Type to filter from Request Object
 function fileFilter (req,file,cb) {
     
-    if(file.originalname.split('.')[1] == 'pdf')
+    if(file.originalname.split('.')[1] == 'java')
         cb(null, true)
     else
         cb(null, false)
