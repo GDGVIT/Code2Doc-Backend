@@ -8,8 +8,9 @@ var storage = multer.diskStorage({
     destination: (req,file,cb) => {
         cb(null,'./public/uploads/'+req.header('User-Name'))
     },
-    filename: (req,file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now())
+    filename: (req,file, cb) =>{
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9) + '-'+ file.originalname
+        cb(null,uniqueSuffix)
     }
 })
 
@@ -23,9 +24,8 @@ router.get('/',(req,res)=>{
 })
 
 // EndPoint to Upload File
-router.post('/testUpload',upload.single('file'),(req,res) =>{
-    console.log('storage location is ', req.hostname +'/' + req.file.path);
-    return res.send(req.file); 
+router.post('/testUpload',upload.array('files'),(req,res) =>{
+    return res.send(req.files); 
 })
 
 
