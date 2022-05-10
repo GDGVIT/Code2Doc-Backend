@@ -5,6 +5,7 @@ const express = require('express')
 const cors = require('cors')
 const fs = require('fs')
 const uploadRoute = require('./api/routes/upload')
+const processingRoute = require('./api/routes/processing')
 
 const app = express()
 
@@ -14,7 +15,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/upload',uploadRoute)
-
+app.use('/process',processingRoute)
 
 // @TODO - Take Directory Path through Login Token
 app.get('/',(req,res)=>{
@@ -24,7 +25,7 @@ app.get('/',(req,res)=>{
         fs.mkdirSync("./public/uploads/"+folder)
     }
 
-    res.json({
+    return res.json({
         "status": 200,
         "message": "API UP AND RUNNING"
     })

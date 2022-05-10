@@ -14,10 +14,20 @@ var storage = multer.diskStorage({
     }
 })
 
-const upload = multer({storage: storage})
+//Filter for Files to Upload
+// @TODO - Take File Type to filter from Request Object
+function fileFilter (req,file,cb) {
+    
+    if(file.originalname.split('.')[1] == 'pdf')
+        cb(null, true)
+    else
+        cb(null, false)
+}
+
+const upload = multer({storage: storage, fileFilter: fileFilter})
 
 router.get('/',(req,res)=>{
-    res.json({
+    return res.json({
         "status": 200,
         "message": "Upload Endpoint Working"
     })
@@ -33,7 +43,7 @@ router.post('/testUpload',upload.array('files'),(req,res) =>{
 // @TODO - Take Directory Path through Login Token
 router.delete('/clearFolder',(req,res)=>{
     fs.rmSync('./public/uploads/'+req.header('User-Name'),  { recursive: true, force: true })
-    res.json({
+    return res.json({
         "status": 200,
         "message": "folder cleared"
     })
