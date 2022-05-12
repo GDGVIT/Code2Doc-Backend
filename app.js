@@ -6,6 +6,7 @@ const cors = require('cors')
 const fs = require('fs')
 const uploadRoute = require('./api/routes/upload')
 const processingRoute = require('./api/routes/processing')
+const serveOutputFileRoute = require('./api/routes/serveOutputFile')
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.use(cors())
 
 app.use('/upload',uploadRoute)
 app.use('/process',processingRoute)
+app.use('/download',serveOutputFileRoute)
 
 // @TODO - Take Directory Path through Login Token
 app.get('/',(req,res)=>{

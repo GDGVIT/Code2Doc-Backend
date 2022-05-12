@@ -4,6 +4,7 @@ const PDFDocument = require('pdfkit')
 
 router.get('/',(req,res)=>{
     
+    // @TODO - Take Directory Path through Login Token
     const folder = './public/uploads/'+req.header('User-Name')
     var folderFiles =[]
 
@@ -57,7 +58,7 @@ function processLineByLine(fileName, doc)
 
     lines.forEach((line)=>{
         line = fixTabSpaces(line)
-        doc.text(text)
+        doc.text(line)
     })
     doc.addPage()
 }
