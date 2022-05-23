@@ -10,6 +10,17 @@
 - nodemon app.js
 - accessible at localhost:3000
 
+## Tasks
+
+- [X] User Uploads Multiple Files
+- [X] Update Selected Filtered Files to Backend
+- [ ] Do Selection According to File Type From User
+- [X] Maintain Indentation of Code
+- [ ] Syntax Highlighting of Code
+- [X] Give PDF Output
+- [ ] Give .docx Output
+- [ ] User select multiple file type to combine
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
