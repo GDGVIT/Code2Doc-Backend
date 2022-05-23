@@ -3,7 +3,6 @@ const fs = require('fs')
 const multer = require('multer')
 
 // Storage Declaration for Multer
-// @TODO - Take Directory Path through Login Token
 var storage = multer.diskStorage({
     destination: (req,file,cb) => {
         cb(null,'./public/uploads/'+req.header('User-Name'))
@@ -34,13 +33,12 @@ router.get('/',(req,res)=>{
 })
 
 // EndPoint to Upload File
-router.post('/testUpload',upload.array('files'),(req,res) =>{
+router.post('/uploadFiles',upload.array('files'),(req,res) =>{
     return res.send(req.files); 
 })
 
 
 // Clears the Upload Folder of the Client
-// @TODO - Take Directory Path through Login Token
 router.delete('/clearFolder',(req,res)=>{
     fs.rmSync('./public/uploads/'+req.header('User-Name'),  { recursive: true, force: true })
     return res.json({

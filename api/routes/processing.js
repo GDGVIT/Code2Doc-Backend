@@ -3,8 +3,6 @@ const fs = require('fs')
 const PDFDocument = require('pdfkit')
 
 router.get('/',(req,res)=>{
-    
-    // @TODO - Take Directory Path through Login Token
     const folder = './public/uploads/'+req.header('User-Name')
     var folderFiles =[]
 
@@ -36,7 +34,7 @@ router.get('/',(req,res)=>{
         
         return res.json({
             "status":200,
-            "message": "getting all file",
+            "message": "processing successful",
             "files": folderFiles
         })
     })

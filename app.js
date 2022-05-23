@@ -4,6 +4,8 @@ const exp = require('constants')
 const express = require('express')
 const cors = require('cors')
 const fs = require('fs')
+const {v4: uuid4} = require('uuid')
+
 const uploadRoute = require('./api/routes/upload')
 const processingRoute = require('./api/routes/processing')
 const serveOutputFileRoute = require('./api/routes/serveOutputFile')
@@ -21,15 +23,19 @@ app.use('/download',serveOutputFileRoute)
 
 // @TODO - Take Directory Path through Login Token
 app.get('/',(req,res)=>{
-    var folder = req.header("User-Name")
-    if(!fs.existsSync("./public/uploads/"+folder))
+
+    const uid = uuid4()
+    console.log(uid)
+
+    if(!fs.existsSync("./public/uploads/"+uid))
     {
-        fs.mkdirSync("./public/uploads/"+folder)
+        fs.mkdirSync("./public/uploads/"+uid)
     }
 
     return res.json({
         "status": 200,
-        "message": "API UP AND RUNNING"
+        "message": "API UP AND RUNNING",
+        "userId": uid
     })
 })
 
