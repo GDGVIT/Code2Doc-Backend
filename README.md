@@ -14,7 +14,7 @@
 
 - [X] User Uploads Multiple Files
 - [X] Update Selected Filtered Files to Backend
-- [ ] Do Selection According to File Type From User
+- [X] Do Selection According to File Type From User
 - [X] Maintain Indentation of Code
 - [ ] Syntax Highlighting of Code
 - [X] Give PDF Output

@@ -14,10 +14,9 @@ var storage = multer.diskStorage({
 })
 
 //Filter for Files to Upload
-// @TODO - Take File Type to filter from Request Object
 function fileFilter (req,file,cb) {
     
-    if(file.originalname.split('.')[1] == 'java')
+    if(file.originalname.split('.')[1] == req.header('File-Format'))
         cb(null, true)
     else
         cb(null, false)
