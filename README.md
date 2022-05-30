@@ -1,32 +1,3 @@
-<<<<<<< HEAD
-# Code2 Doc
-
-[Link to Documentation](https://documenter.getpostman.com/view/14038453/UyxqBiXx)
-
-## How to use
-> Development Mode
-
-- Clone the repo
-- npm install
-- nodemon app.js
-- accessible at localhost:3000
-
-## Tasks
-
-- [X] User Uploads Multiple Files
-- [X] Update Selected Filtered Files to Backend
-- [X] Do Selection According to File Type From User
-- [X] Maintain Indentation of Code
-- [ ] Syntax Highlighting of Code
-- [X] Give PDF Output
-- [ ] Give .docx Output
-- [ ] User select multiple file type to combine
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-=======
 <p align="center">
 <a href="https://dscvit.com">
 	<img width="400" src="https://user-images.githubusercontent.com/56252312/159312411-58410727-3933-4224-b43e-4e9b627838a3.png#gh-light-mode-only" alt="GDSC VIT"/>
@@ -44,10 +15,14 @@ Please make sure to update tests as appropriate.
 
 
 ## Features
-- [ ]  < feature >
-- [ ]  < feature >
-- [ ]  < feature >
-- [ ]  < feature >
+- [X] User Uploads Multiple Files
+- [X] Update Selected Filtered Files to Backend
+- [X] Do Selection According to File Type From User
+- [X] Maintain Indentation of Code
+- [ ] Syntax Highlighting of Code
+- [X] Give PDF Output
+- [ ] Give .docx Output
+- [ ] User select multiple file type to combine
 
 <br>
 
@@ -61,13 +36,13 @@ Please make sure to update tests as appropriate.
 
 < directions to install > 
 ```bash
-< insert code >
+npm install
 ```
 
 < directions to execute >
 
 ```bash
-< insert code >
+nodemon app.js
 ```
 
 ## Contributors
@@ -75,15 +50,15 @@ Please make sure to update tests as appropriate.
 <table>
 	<tr align="center">
 		<td>
-		John Doe
+		Rehaan Mazid
 		<p align="center">
-			<img src = "https://dscvit.com/images/dsc-logo-square.svg" width="150" height="150" alt="Your Name Here (Insert Your Image Link In Src">
+			<img src = "" width="150" height="150" alt="Rehaan Mazid">
 		</p>
 			<p align="center">
-				<a href = "https://github.com/person1">
+				<a href = "https://github.com/Rehaan1">
 					<img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36" alt="GitHub"/>
 				</a>
-				<a href = "https://www.linkedin.com/in/person1">
+				<a href = "https://www.linkedin.com/in/rehaan-m-928a88137/">
 					<img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="36" height="36" alt="LinkedIn"/>
 				</a>
 			</p>
@@ -94,4 +69,3 @@ Please make sure to update tests as appropriate.
 <p align="center">
 	Made with ❤ by <a href="https://dscvit.com">DSC VIT</a>
 </p>
->>>>>>> 98f80bb... Initial commit
