@@ -22,13 +22,17 @@
 - [ ] Syntax Highlighting of Code
 - [X] Give PDF Output
 - [ ] Give .docx Output
-- [ ] User select multiple file type to combine
+- [X] User select multiple file type to combine
 
 <br>
 
 ## Dependencies
- - < dependency >
- - < dependency >
+ - cors
+ - dotenv
+ - express
+ - multer
+ - pdfkit
+ - uuid
 
 
 ## Running
