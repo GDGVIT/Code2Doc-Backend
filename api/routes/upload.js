@@ -15,7 +15,9 @@ const storage = multer.diskStorage({
 
 // Filter for Files to Upload
 function fileFilter (req, file, cb) {
-  if (file.originalname.split('.')[1] === req.header('File-Format')) { cb(null, true) } else { cb(null, false) }
+  const formats = req.header('File-Format')
+  const formatArray = formats.split(',')
+  if (formatArray.includes(file.originalname.split('.')[1])) { cb(null, true) } else { cb(null, false) }
 }
 
 const upload = multer({ storage: storage, fileFilter: fileFilter })
