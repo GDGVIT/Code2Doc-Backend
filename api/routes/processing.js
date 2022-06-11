@@ -6,6 +6,13 @@ router.get('/', (req, res) => {
   const folder = './public/uploads/' + req.header('User-Name')
   const folderFiles = []
 
+  if (!fs.existsSync(folder)) {
+    return res.status(400).json({
+      status: 400,
+      message: 'User Folder Not Created Yet'
+    })
+  }
+
   // Creating PDF Document
   const doc = new PDFDocument()
 
