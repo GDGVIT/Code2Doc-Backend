@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
   })
 })
 
-const job = schedule.scheduleJob('06 12 *  * *', () =>{
+const job = schedule.scheduleJob('59 23 *  * *', () =>{
   console.log('Folder Clean Cron Job Started')
   try
   {
