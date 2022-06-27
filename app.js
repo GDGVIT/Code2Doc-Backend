@@ -8,7 +8,7 @@ const { v4: uuid4 } = require('uuid')
 const uploadRoute = require('./api/routes/upload')
 const processingRoute = require('./api/routes/processing')
 const serveOutputFileRoute = require('./api/routes/serveOutputFile')
-const schedule = require('node-schedule');
+const schedule = require('node-schedule')
 
 const app = express()
 
@@ -37,23 +37,22 @@ app.get('/', (req, res) => {
   })
 })
 
-const job = schedule.scheduleJob('59 23 *  * *', () =>{
+schedule.scheduleJob('59 01 *  * *', () => {
   console.log('Folder Clean Cron Job Started')
-  try
-  {
-    fs.readdir('./public/uploads/',(err,files) =>{
-      files.forEach((file) =>{
-        if(file.toString() !== 'test')
-        {
-          console.log(file + "deleted")
+  try {
+    fs.readdir('./public/uploads/', (err, files) => {
+      if (err) {
+        console.log(err)
+      }
+      files.forEach((file) => {
+        if (file.toString() !== 'test') {
+          console.log(file + 'deleted')
           fs.rmSync('./public/uploads/' + file.toString(), { recursive: true, force: true })
         }
       })
     })
-  }
-  catch(e)
-  {
-    console.log('ERROR IN CRON JOB:',e)
+  } catch (e) {
+    console.log('ERROR IN CRON JOB:', e)
   }
 
   console.log('Folder Clean Cron Job Completed')
