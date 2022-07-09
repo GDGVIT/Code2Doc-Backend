@@ -36,10 +36,38 @@ router.post('/uploadFiles', upload.array('files'), (req, res) => {
 
 // Clears the Upload Folder of the Client
 router.delete('/clearFolder', (req, res) => {
-  fs.rmSync('./public/uploads/' + req.header('User-Name'), { recursive: true, force: true })
-  return res.json({
-    status: 200,
-    message: 'folder cleared'
-  })
+  try
+  {
+    fs.rmSync('./public/uploads/' + req.header('User-Name'), { recursive: true, force: true })
+    return res.json({
+      status: 200,
+      message: 'folder cleared'
+    })
+  }
+  catch(err)
+  {
+     return res.json({
+       status: 400,
+       message: err
+     })
+  }
+})
+
+router.delete('/deleteFile', (req, res) => {
+  try
+  {
+    fs.unlinkSync('./public/uploads/' + req.header('User-Name')+"/"+req.body.filename)
+    return res.json({
+      status: 200,
+      message: 'file deleted'
+    })
+  }
+ catch(err)
+ {
+    return res.json({
+      status: 400,
+      message: err
+    })
+ }
 })
 module.exports = router
