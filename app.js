@@ -21,7 +21,6 @@ app.use('/upload', uploadRoute)
 app.use('/process', processingRoute)
 app.use('/download', serveOutputFileRoute)
 
-// @TODO - Take Directory Path through Login Token
 app.get('/', (req, res) => {
   const uid = uuid4()
   console.log(uid)

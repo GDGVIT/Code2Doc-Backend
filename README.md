@@ -33,6 +33,9 @@
  - multer
  - pdfkit
  - uuid
+ - highlight.js
+ - html-pdf
+ - html-creator
 
 
 ## Running
