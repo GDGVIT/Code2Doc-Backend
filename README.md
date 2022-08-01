@@ -19,7 +19,7 @@
 - [X] Update Selected Filtered Files to Backend
 - [X] Do Selection According to File Type From User
 - [X] Maintain Indentation of Code
-- [ ] Syntax Highlighting of Code
+- [X] Syntax Highlighting of Code
 - [X] Give PDF Output
 - [ ] Give .docx Output
 - [X] User select multiple file type to combine
