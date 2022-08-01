@@ -5,6 +5,7 @@ const hljs = require('highlight.js')
 const htmlCreator = require('html-creator')
 const pdf = require('html-pdf')
 
+// Obselete Route
 router.get('/obselete', (req, res) => {
   const folder = './public/uploads/' + req.header('User-Name')
   const folderFiles = []
@@ -49,7 +50,6 @@ router.get('/obselete', (req, res) => {
 })
 
 // New Processing Route
-
 router.get('/', (req, res) => {
   const folder = './public/uploads/' + req.header('User-Name')
   const folderFiles = []
@@ -135,9 +135,8 @@ function processLineByLine (fileName, html) {
 
   lines.forEach((line) => {
     // fix tab spaces
-    line = fixTabSpaces(line)
-
-    const htmlContent = hljs.highlightAuto(line).value
+    let htmlContent = hljs.highlightAuto(line).value
+    htmlContent = fixTabSpaces(htmlContent)
     // File Contents
     html.document.addElementToType('body', { type: 'p', content: htmlContent })
   })
@@ -148,74 +147,9 @@ function fixTabSpaces (line) {
   line = line.split('\t')
   let text = ''
   line.forEach(lineItem => {
-    if (lineItem === '') { text += '   ' } else { text += lineItem }
+    if (lineItem === '') { text += '&emsp; ' } else { text += lineItem }
   })
   return text
 }
-
-// TODO - CLEAN UP
-// Test Route for Highlight.jS
-router.get('/highlight', (req, res) => {
-  const html = hljs.highlightAuto('public static void main() { Scanner Sc = new Scanner(System.in)}').value
-  console.log(html)
-  return res.json({
-    status: 200,
-    val: html
-  })
-})
-
-// TODO - CLEAN UP
-// Test Route for HTML Creator
-router.get('/htmlCreate', (req, res) => {
-  const html = new htmlCreator()
-
-  // adding required CDN Files
-  html.document.addElement({ type: 'head', content: [{ type: 'link', attributes: { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css' } }] })
-  html.document.addElement({ type: 'body', content: [{ type: 'script', attributes: { src: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js' } }] })
-
-  // File Contents
-  html.document.addElementToType('body', { type: 'p', content: '<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>()</span> { Scanner Sc = <span class="hljs-keyword">new</span> Scanner(System.<span class="hljs-keyword">in</span>)}' })
-
-  // After End of a File
-  html.document.addElementToType('body', { type: 'br' })
-
-  const htmlContent = html.renderHTML()
-  console.log(htmlContent)
-
-  fs.writeFile('./public/uploads/' + 'index.html', htmlContent, (err) => {
-    if (err) {
-      console.error(err)
-      return res.json({
-        status: 400,
-        err: err
-      })
-    }
-    return res.json({
-      status: 200,
-      val: htmlContent
-    })
-  })
-})
-
-// TODO - Clean Up
-// Test HTML to PDF
-router.get('/htmlToPdf', (req, res) => {
-  const html = fs.readFileSync('./public/uploads/index.html', 'utf8')
-  const options = { format: 'Letter' }
-
-  pdf.create(html, options).toFile('./public/uploads/output.pdf', (err, data) => {
-    if (err) {
-      console.error(err)
-      return res.json({
-        status: 400,
-        err: err
-      })
-    }
-    return res.json({
-      status: 200,
-      val: data
-    })
-  })
-})
 
 module.exports = router
