@@ -138,7 +138,7 @@ function processLineByLine (fileName, html) {
     let htmlContent = hljs.highlightAuto(line).value
     htmlContent = fixTabSpaces(htmlContent)
     // File Contents
-    html.document.addElementToType('body', { type: 'p', content: htmlContent })
+    html.document.addElementToType('body', { type: 'p', attributes: { style: 'padding-left: 1rem;font-family: monospace, monospace;' }, content: htmlContent })
   })
 }
 
