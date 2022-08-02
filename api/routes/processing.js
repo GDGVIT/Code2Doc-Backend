@@ -149,6 +149,16 @@ function fixTabSpaces (line) {
   line.forEach(lineItem => {
     if (lineItem === '') { text += '&emsp; ' } else { text += lineItem }
   })
+
+  // @TODO Accomodate Spaces
+
+  // let text3 = text.split(' ')
+  // console.log(text3)
+  // let text2 =''
+  // text3.forEach(item => {
+  //    if(item === '') { text2 += '&nbsp; '} else { text2 += item }
+  // })
+  // console.log(text2)
   return text
 }
 
