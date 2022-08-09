@@ -4,7 +4,6 @@ const PDFDocument = require('pdfkit')
 const hljs = require('highlight.js')
 const htmlCreator = require('html-creator')
 const pdf = require('html-pdf')
-const e = require('express')
 
 // Obselete Route
 router.get('/obselete', (req, res) => {
@@ -135,12 +134,11 @@ function processLineByLine (fileName, html) {
   const lines = data.split('\r\n')
 
   lines.forEach((line) => {
-
     // replace 4 spaces for tab
-    let line2 = line.split('    ')
+    const line2 = line.split('    ')
     let text2 = ''
-    line2.forEach(item =>{
-      if(item === '') {text2 += '\t'} else { text2 += item}
+    line2.forEach(item => {
+      if (item === '') { text2 += '\t' } else { text2 += item }
     })
 
     // fix tab spaces
