@@ -4,6 +4,7 @@ const PDFDocument = require('pdfkit')
 const hljs = require('highlight.js')
 const htmlCreator = require('html-creator')
 const pdf = require('html-pdf')
+const e = require('express')
 
 // Obselete Route
 router.get('/obselete', (req, res) => {
@@ -134,8 +135,16 @@ function processLineByLine (fileName, html) {
   const lines = data.split('\r\n')
 
   lines.forEach((line) => {
+
+    // replace 4 spaces for tab
+    let line2 = line.split('    ')
+    let text2 = ''
+    line2.forEach(item =>{
+      if(item === '') {text2 += '\t'} else { text2 += item}
+    })
+
     // fix tab spaces
-    let htmlContent = hljs.highlightAuto(line).value
+    let htmlContent = hljs.highlightAuto(text2).value
     htmlContent = fixTabSpaces(htmlContent)
     // File Contents
     html.document.addElementToType('body', { type: 'p', attributes: { style: 'padding-left: 1rem;font-family: monospace, monospace;' }, content: htmlContent })
@@ -149,16 +158,6 @@ function fixTabSpaces (line) {
   line.forEach(lineItem => {
     if (lineItem === '') { text += '&emsp; ' } else { text += lineItem }
   })
-
-  // @TODO Accomodate Spaces
-
-  // let text3 = text.split(' ')
-  // console.log(text3)
-  // let text2 =''
-  // text3.forEach(item => {
-  //    if(item === '') { text2 += '&nbsp; '} else { text2 += item }
-  // })
-  // console.log(text2)
   return text
 }
 
