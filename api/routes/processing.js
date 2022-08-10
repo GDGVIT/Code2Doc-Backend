@@ -62,7 +62,7 @@ router.get('/', (req, res) => {
   }
 
   // Creating HTML Document
-  const html = new htmlCreator()
+  const html = new htmlCreator() //eslint-disable-line
 
   // adding required CDN Files
   html.document.addElement({ type: 'head', content: [{ type: 'link', attributes: { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css' } }] })
