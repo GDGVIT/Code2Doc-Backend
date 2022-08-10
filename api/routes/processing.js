@@ -131,11 +131,12 @@ function processLineByLine (fileName, html) {
   html.document.addElementToType('body', { type: 'hr' })
 
   const data = fs.readFileSync(fileName, 'utf-8')
-  const lines = data.split('\r\n')
+  const lines = data.split('\n')
 
   lines.forEach((line) => {
     // replace 4 spaces for tab
     const line2 = line.split('    ')
+    console.log(line2)
     let text2 = ''
     line2.forEach(item => {
       if (item === '') { text2 += '\t' } else { text2 += item }
