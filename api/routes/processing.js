@@ -98,7 +98,15 @@ router.get('/', (req, res) => {
 
       const htmlFile = fs.readFileSync(folder + '/index.html', 'utf8')
 
-      const options = { format: 'Letter' }
+      const options = {
+        format: 'Letter',
+        border: {
+          top: '.5in',
+          right: '.5in',
+          bottom: '1in',
+          left: '.5in'
+        }
+      }
 
       pdf.create(htmlFile, options).toFile(folder + '/output.pdf', (err, data) => {
         if (err) {
@@ -136,7 +144,7 @@ function processLineByLine (fileName, html) {
   lines.forEach((line) => {
     // replace 4 spaces for tab
     const line2 = line.split('    ')
-    console.log(line2)
+    // console.log(line2)
     let text2 = ''
     line2.forEach(item => {
       if (item === '') { text2 += '\t' } else { text2 += item }
@@ -146,7 +154,7 @@ function processLineByLine (fileName, html) {
     let htmlContent = hljs.highlightAuto(text2).value
     htmlContent = fixTabSpaces(htmlContent)
     // File Contents
-    html.document.addElementToType('body', { type: 'p', attributes: { style: 'padding-left: 1rem;font-family: monospace, monospace; font-size: 12px' }, content: htmlContent })
+    html.document.addElementToType('body', { type: 'p', attributes: { style: 'padding-left: 1rem;font-family: monospace, monospace; font-size: 12px; line-height: 0.6;' }, content: htmlContent })
   })
 }
 
