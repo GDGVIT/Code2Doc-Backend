@@ -15,7 +15,9 @@ const storage = multer.diskStorage({
 
 // Filter for Files to Upload
 function fileFilter (req, file, cb) {
-  if (file.originalname.split('.')[1] === req.header('File-Format')) { cb(null, true) } else { cb(null, false) }
+  const formats = req.header('File-Format')
+  const formatArray = formats.split(',')
+  if (formatArray.includes(file.originalname.split('.')[1])) { cb(null, true) } else { cb(null, false) }
 }
 
 const upload = multer({ storage: storage, fileFilter: fileFilter })
@@ -34,10 +36,32 @@ router.post('/uploadFiles', upload.array('files'), (req, res) => {
 
 // Clears the Upload Folder of the Client
 router.delete('/clearFolder', (req, res) => {
-  fs.rmSync('./public/uploads/' + req.header('User-Name'), { recursive: true, force: true })
-  return res.json({
-    status: 200,
-    message: 'folder cleared'
-  })
+  try {
+    fs.rmSync('./public/uploads/' + req.header('User-Name'), { recursive: true, force: true })
+    return res.json({
+      status: 200,
+      message: 'folder cleared'
+    })
+  } catch (err) {
+    return res.json({
+      status: 400,
+      message: err
+    })
+  }
+})
+
+router.delete('/deleteFile', (req, res) => {
+  try {
+    fs.unlinkSync('./public/uploads/' + req.header('User-Name') + '/' + req.body.filename)
+    return res.json({
+      status: 200,
+      message: 'file deleted'
+    })
+  } catch (err) {
+    return res.json({
+      status: 400,
+      message: err
+    })
+  }
 })
 module.exports = router
